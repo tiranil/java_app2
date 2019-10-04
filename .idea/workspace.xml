@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dfcea3ee-7167-4f01-bbbb-9861d791dc25" name="Default Changelist" comment="" />
+    <list default="true" id="dfcea3ee-7167-4f01-bbbb-9861d791dc25" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_postgresql_postgresql_42_2_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myApp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/DatabaseCon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/DatabaseCon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/CustomerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/CustomerDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/DatabaseCon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/DatabaseCon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/tomcat/logs/access_log.2019-10-03" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,16 +25,19 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1Rgxq8rJ3lYlWaTRhdZprcdPawH" />
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/java_app" />
+    <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.2.5" />
     <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -46,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.myApp [tomcat7:run]">
+  <component name="RunManager" selected="Application.DatabaseCon">
     <configuration name="DatabaseCon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.dbolonkin.vaadin.DatabaseCon" />
       <module name="myApp" />
@@ -170,9 +183,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DatabaseCon" />
         <item itemvalue="Maven.myApp [tomcat7:run]" />
         <item itemvalue="Maven.myApp [clean:clean]" />
-        <item itemvalue="Application.DatabaseCon" />
         <item itemvalue="Maven.myApp [install:install]" />
       </list>
     </recent_temporary>
@@ -189,5 +202,18 @@
       <updated>1570102727578</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

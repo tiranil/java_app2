@@ -10,7 +10,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     public static final String SQL_DELETE_USER = "DELETE FROM customer WHERE id=?";
     public static final String SQL_UPDATE_USER = "UPDATE customer SET first_name = ?, last_name = ? WHERE id=?";
     public static final String SQL_CREATE_USER = "INSERT INTO customer VALUES (?,?,?)";
-    public static final String SQL_GET_ID = "select IDENT_CURRENT('customer')+IDENT_INCR('customer')";
+    public static final String SQL_GET_ID = "SELECT MAX(id) FROM customer;";
 
 
 
@@ -79,8 +79,10 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
              PreparedStatement statement =
                      connection.prepareStatement(SQL_GET_ID)) {
             ResultSet rs = statement.executeQuery();
-            nextId = rs.getLong(1);
-            return nextId;
+            if (rs.next()) {
+                nextId = rs.getLong(1);
+                return nextId+1;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

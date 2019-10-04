@@ -48,6 +48,7 @@ public class DatabaseCon {
         CustomerDAO customerDAO = new CustomerDAO();
         System.out.println(customerDAO.findAll());
         System.out.println(customerDAO.findEntityById(1));
+        System.out.println(customerDAO.getNextId());
 
 
     }
