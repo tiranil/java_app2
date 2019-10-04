@@ -1,7 +1,10 @@
 package ru.dbolonkin.vaadin;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import javax.persistence.*;
 
+@JsonDeserialize(using = CustomerDeserializer.class)
 public class Customer {
 
     @Id
