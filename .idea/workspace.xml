@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfcea3ee-7167-4f01-bbbb-9861d791dc25" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/MyUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/MyUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/MyUI$MyUIServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/MyUI$MyUIServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -207,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570177631143</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added new servlet, edited vaadin servlet.&#10;Created base for rest service.">
+      <created>1570188818584</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1570188818584</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +229,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="GetNextId method corrected" />
-    <option name="LAST_COMMIT_MESSAGE" value="GetNextId method corrected" />
+    <MESSAGE value="Added new servlet, edited vaadin servlet.&#10;Created base for rest service." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new servlet, edited vaadin servlet.&#10;Created base for rest service." />
   </component>
 </project>
