@@ -1,14 +1,15 @@
-package ru.dbolonkin.vaadin;
+package ru.dbolonkin.vaadin.ui;
 
 import javax.servlet.annotation.WebServlet;
-
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.ui.*;
-
+import ru.dbolonkin.vaadin.database.CustomerDAO;
+import ru.dbolonkin.vaadin.entity.Customer;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,6 +19,7 @@ import java.util.List;
  * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be 
  * overridden to add component to the user interface and initialize non-component functionality.
  */
+
 @Theme("mytheme")
 public class MyUI extends UI {
     private CustomerDAO customerDAO = new CustomerDAO();
@@ -25,7 +27,7 @@ public class MyUI extends UI {
     private CustomerForm form = new CustomerForm(this);
 
 
-    public void updateList() {
+    public void updateList() throws IOException, SQLException {
         List<Customer> customers = customerDAO.findAll();
         grid.setItems(customers);
     }
@@ -34,7 +36,6 @@ public class MyUI extends UI {
         final VerticalLayout layout = new VerticalLayout();
         form.setVisible(false);
 
-        // add Grid to the layout
         HorizontalLayout main = new HorizontalLayout(grid, form);
         main.setSizeFull();
         grid.setSizeFull();
@@ -50,8 +51,13 @@ public class MyUI extends UI {
 
         layout.addComponents(toolbar, main);
 
-        // fetch list of Customers from service and assign it to Grid
-        updateList();
+        try {
+            updateList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         setContent(layout);

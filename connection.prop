@@ -1,0 +1,4 @@
+URL = jdbc:postgresql://localhost/test
+driver = org.postgresql.Driver
+user = postgres
+password = masterpass

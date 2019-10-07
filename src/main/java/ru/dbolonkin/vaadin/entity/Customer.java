@@ -1,6 +1,7 @@
-package ru.dbolonkin.vaadin;
+package ru.dbolonkin.vaadin.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import ru.dbolonkin.vaadin.service.CustomerDeserializer;
 
 import javax.persistence.*;
 
@@ -8,8 +9,8 @@ import javax.persistence.*;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_generator")
-    @SequenceGenerator(name = "customer_generator", sequenceName = "customer_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customers_generator")
+    @SequenceGenerator(name = "customers_generator", sequenceName = "customers_id_seq")
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
     private String firstName;

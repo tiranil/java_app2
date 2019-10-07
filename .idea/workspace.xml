@@ -2,10 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfcea3ee-7167-4f01-bbbb-9861d791dc25" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/connection.prop" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/CustomerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/CustomerDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/AbstractDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/database/AbstractDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/entity/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/database/CustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/service/CustomerDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/ui/CustomerForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/entity/CustomerList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/DatabaseCon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/database/DatabaseCon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/MyUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/dbolonkin/vaadin/ui/MyUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/AbstractDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/CustomerDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/CustomerForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/CustomerList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/DatabaseCon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/MyUI$MyUIServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ru/dbolonkin/vaadin/MyUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +47,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/java_app" />
+    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/test_project" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -58,11 +76,11 @@
   </component>
   <component name="RunManager" selected="Maven.myApp [tomcat7:run]">
     <configuration name="DatabaseCon" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.dbolonkin.vaadin.DatabaseCon" />
+      <option name="MAIN_CLASS_NAME" value="ru.dbolonkin.vaadin.database.DatabaseCon" />
       <module name="myApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.dbolonkin.vaadin.*" />
+          <option name="PATTERN" value="ru.dbolonkin.vaadin.entity.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -226,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570205756048</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added REST post method. Edited put method.">
+      <created>1570437972072</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1570437972072</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,6 +271,7 @@
     <MESSAGE value="GetNextId method corrected" />
     <MESSAGE value="Added new servlet, edited vaadin servlet.&#10;Created base for rest service." />
     <MESSAGE value="Added REST put method." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added REST put method." />
+    <MESSAGE value="Added REST post method. Edited put method." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added REST post method. Edited put method." />
   </component>
 </project>

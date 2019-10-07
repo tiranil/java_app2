@@ -1,23 +1,35 @@
-package ru.dbolonkin.vaadin;
+package ru.dbolonkin.vaadin.database;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DatabaseCon {
 
-    //  Database credentials
-    static final String DB_URL = "jdbc:postgresql://localhost/test";
-    static final String USER = "postgres";
-    static final String PASS = "masterpass";
 
 
-    public static Connection getConn() {
+
+    public DatabaseCon() throws FileNotFoundException {
+    }
+
+
+    public static Connection getConn() throws IOException {
+        FileInputStream fis=new FileInputStream("connection.prop");
+        Properties p=new Properties ();
+        p.load (fis);
+        String driver= (String) p.get ("driver");
+        String url= (String) p.get ("URL");
+        String username= (String) p.get ("user");
+        String password= (String) p.get ("password");
         Connection connection = null;
         System.out.println("Testing connection to PostgreSQL JDBC");
 
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName(driver);
         } catch (ClassNotFoundException e) {
             System.out.println("PostgreSQL JDBC Driver is not found. Include it in your library path ");
             e.printStackTrace();
@@ -28,7 +40,7 @@ public class DatabaseCon {
 
         try {
             connection = DriverManager
-                    .getConnection(DB_URL, USER, PASS);
+                    .getConnection(url,username,password);
 
         } catch (SQLException e) {
             System.out.println("Connection Failed");
@@ -43,12 +55,8 @@ public class DatabaseCon {
         return connection;
     }
 
-    public static void main(String[] argv) throws SQLException {
+    public static void main(String[] argv)  {
 
-        CustomerDAO customerDAO = new CustomerDAO();
-        System.out.println(customerDAO.findAll());
-        System.out.println(customerDAO.findEntityById(1));
-        System.out.println(customerDAO.getNextId());
 
 
     }

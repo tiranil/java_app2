@@ -1,18 +1,13 @@
-package ru.dbolonkin.vaadin;
+package ru.dbolonkin.vaadin.service;
 
-
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
-import java.io.File;
+import ru.dbolonkin.vaadin.database.CustomerDAO;
+import ru.dbolonkin.vaadin.entity.Customer;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
+import java.sql.SQLException;
 import java.util.List;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
 
 @Path("/customers")
@@ -22,7 +17,7 @@ public class CustomerService {
 
     @GET
     @Produces("application/json")
-    public String getAll() throws JsonProcessingException {
+    public String getAll() throws IOException, SQLException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         List<Customer> customers = customerDAO.findAll();
@@ -36,7 +31,7 @@ public class CustomerService {
     @GET
     @Produces("application/json")
     @Path("{id}")
-    public String getOne(@PathParam("id") int id) throws JsonProcessingException {
+    public String getOne(@PathParam("id") int id) throws IOException, SQLException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         String list = new String();
@@ -55,7 +50,7 @@ public class CustomerService {
 
     @POST
     @Consumes("application/json")
-    public void create(String s) throws IOException {
+    public void create(String s) throws IOException, SQLException {
         ObjectMapper objectMapper = new ObjectMapper();
         Customer customer = objectMapper.readValue(s, Customer.class);
         customerDAO.create(customer);
@@ -65,7 +60,7 @@ public class CustomerService {
 
     @PUT
     @Consumes("application/json")
-    public void update(String s) throws IOException {
+    public void update(String s) throws IOException, SQLException {
         ObjectMapper objectMapper = new ObjectMapper();
         Customer customer = objectMapper.readValue(s, Customer.class);
         customerDAO.update(customer);
@@ -73,7 +68,7 @@ public class CustomerService {
 
     @DELETE
     @Path("{id}")
-    public void delete(@PathParam("id") int id) {
+    public void delete(@PathParam("id") int id) throws IOException, SQLException {
         Customer customer = customerDAO.findEntityById(id);
         if(customer != null) {
             customerDAO.delete(customer);

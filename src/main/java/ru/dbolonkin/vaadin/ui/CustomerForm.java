@@ -1,9 +1,14 @@
-package ru.dbolonkin.vaadin;
+package ru.dbolonkin.vaadin.ui;
 
 import com.vaadin.data.Binder;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
+import ru.dbolonkin.vaadin.database.CustomerDAO;
+import ru.dbolonkin.vaadin.entity.Customer;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class CustomerForm extends com.vaadin.ui.FormLayout{
     private TextField firstName = new TextField("First name");
@@ -22,8 +27,24 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
         setSizeUndefined();
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         addComponents(firstName, lastName, buttons);
-        save.addClickListener(e -> this.save());
-        delete.addClickListener(e -> this.delete());
+        save.addClickListener(e -> {
+            try {
+                this.save();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
+        delete.addClickListener(e -> {
+            try {
+                this.delete();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     public void setCustomer(Customer customer) {
@@ -40,13 +61,13 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
         firstName.selectAll();
     }
 
-    private void delete() {
+    private void delete() throws IOException, SQLException {
         customerDAO.delete(customer);
         myUI.updateList();
         setVisible(false);
     }
 
-    private void save() {
+    private void save() throws IOException, SQLException {
 
         final boolean persisted = customer.getId() != null;
         if (persisted) {

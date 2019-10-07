@@ -1,4 +1,4 @@
-package ru.dbolonkin.vaadin;
+package ru.dbolonkin.vaadin.entity;
 
 import java.util.List;
 
