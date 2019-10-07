@@ -17,7 +17,7 @@ public class DatabaseCon {
     }
 
 
-    public static Connection getConn() throws IOException {
+    public static Connection getConn() throws IOException, ClassNotFoundException, SQLException {
         FileInputStream fis=new FileInputStream("connection.prop");
         Properties p=new Properties ();
         p.load (fis);
@@ -28,24 +28,11 @@ public class DatabaseCon {
         Connection connection = null;
         System.out.println("Testing connection to PostgreSQL JDBC");
 
-        try {
-            Class.forName(driver);
-        } catch (ClassNotFoundException e) {
-            System.out.println("PostgreSQL JDBC Driver is not found. Include it in your library path ");
-            e.printStackTrace();
-        }
+        Class.forName(driver);
 
         System.out.println("PostgreSQL JDBC Driver successfully connected");
 
-
-        try {
-            connection = DriverManager
-                    .getConnection(url,username,password);
-
-        } catch (SQLException e) {
-            System.out.println("Connection Failed");
-            e.printStackTrace();
-        }
+        connection = DriverManager.getConnection(url,username,password);
 
         if (connection != null) {
             System.out.println("You successfully connected to database now");

@@ -19,7 +19,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
 
 
     @Override
-    public List<Customer> findAll() throws IOException, SQLException {
+    public List<Customer> findAll() throws IOException, SQLException, ClassNotFoundException {
         List<Customer> customers = new ArrayList<>();
         Connection connection = DatabaseCon.getConn();
         Statement statement = connection.createStatement();
@@ -34,7 +34,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     }
 
     @Override
-    public Customer findEntityById(Integer id) throws SQLException, IOException {
+    public Customer findEntityById(Integer id) throws SQLException, IOException, ClassNotFoundException {
        Customer customer = null;
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_SELECT_USER_ID);
@@ -54,7 +54,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     }
 
     @Override
-    public boolean delete(Customer entity) throws SQLException, IOException {
+    public boolean delete(Customer entity) throws SQLException, IOException, ClassNotFoundException {
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER);
         statement.setLong(1, entity.getId());
@@ -63,7 +63,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
         return true;
         }
 
-    public long getNextId() throws SQLException, IOException {
+    public long getNextId() throws SQLException, IOException, ClassNotFoundException {
         Long nextId = null;
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_GET_ID);
@@ -76,7 +76,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     }
 
     @Override
-    public boolean create(Customer entity) throws SQLException, IOException {
+    public boolean create(Customer entity) throws SQLException, IOException, ClassNotFoundException {
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_CREATE_USER);
         statement.setString(1, entity.getFirstName());
@@ -89,7 +89,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
 
 
     @Override
-    public Customer update(Customer entity) throws IOException, SQLException {
+    public Customer update(Customer entity) throws IOException, SQLException, ClassNotFoundException {
         Customer customer = entity;
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER);

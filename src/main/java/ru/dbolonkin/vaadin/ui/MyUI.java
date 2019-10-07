@@ -27,7 +27,7 @@ public class MyUI extends UI {
     private CustomerForm form = new CustomerForm(this);
 
 
-    public void updateList() throws IOException, SQLException {
+    public void updateList() throws IOException, SQLException, ClassNotFoundException {
         List<Customer> customers = customerDAO.findAll();
         grid.setItems(customers);
     }
@@ -53,9 +53,9 @@ public class MyUI extends UI {
 
         try {
             updateList();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (SQLException  e) {
             e.printStackTrace();
         }
 

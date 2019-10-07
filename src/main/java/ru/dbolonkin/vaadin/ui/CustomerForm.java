@@ -30,7 +30,7 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
         save.addClickListener(e -> {
             try {
                 this.save();
-            } catch (IOException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -39,7 +39,7 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
         delete.addClickListener(e -> {
             try {
                 this.delete();
-            } catch (IOException ex) {
+            } catch (IOException | ClassNotFoundException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -61,13 +61,13 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
         firstName.selectAll();
     }
 
-    private void delete() throws IOException, SQLException {
+    private void delete() throws IOException, SQLException, ClassNotFoundException {
         customerDAO.delete(customer);
         myUI.updateList();
         setVisible(false);
     }
 
-    private void save() throws IOException, SQLException {
+    private void save() throws IOException, SQLException, ClassNotFoundException {
 
         final boolean persisted = customer.getId() != null;
         if (persisted) {

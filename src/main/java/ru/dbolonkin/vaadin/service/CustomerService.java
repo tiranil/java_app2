@@ -17,7 +17,7 @@ public class CustomerService {
 
     @GET
     @Produces("application/json")
-    public String getAll() throws IOException, SQLException {
+    public String getAll() throws IOException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         List<Customer> customers = customerDAO.findAll();
@@ -31,7 +31,7 @@ public class CustomerService {
     @GET
     @Produces("application/json")
     @Path("{id}")
-    public String getOne(@PathParam("id") int id) throws IOException, SQLException {
+    public String getOne(@PathParam("id") int id) throws IOException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         String list = new String();
@@ -50,7 +50,7 @@ public class CustomerService {
 
     @POST
     @Consumes("application/json")
-    public void create(String s) throws IOException, SQLException {
+    public void create(String s) throws IOException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         Customer customer = objectMapper.readValue(s, Customer.class);
         customerDAO.create(customer);
@@ -60,7 +60,7 @@ public class CustomerService {
 
     @PUT
     @Consumes("application/json")
-    public void update(String s) throws IOException, SQLException {
+    public void update(String s) throws IOException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         Customer customer = objectMapper.readValue(s, Customer.class);
         customerDAO.update(customer);
@@ -68,7 +68,7 @@ public class CustomerService {
 
     @DELETE
     @Path("{id}")
-    public void delete(@PathParam("id") int id) throws IOException, SQLException {
+    public void delete(@PathParam("id") int id) throws IOException, SQLException, ClassNotFoundException {
         Customer customer = customerDAO.findEntityById(id);
         if(customer != null) {
             customerDAO.delete(customer);
