@@ -41,37 +41,45 @@ public class CustomerService {
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         String list = new String();
         Customer customer = customerDAO.findEntityById(id);
-        list += objectMapper.writeValueAsString(customer);
-        return  list;
+        if (customer != null) {
+            list = list.concat(objectMapper.writeValueAsString(customer));
+        }
+        else {
+            list = list.concat("There is no customer with such id. Please try to input another id.");
+        }
+        return list;
         }
 
 
 
 
     @POST
-    @Consumes(MediaType.APPLICATION_XML)
-    public void create(Customer customer) {
+    @Consumes("application/json")
+    public void create(String s) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Customer customer = objectMapper.readValue(s, Customer.class);
+        customerDAO.create(customer);
     }
 
 
 
     @PUT
-    @Path("{id}")
     @Consumes("application/json")
-    public void update(@PathParam("id") int id, String s) throws IOException {
+    public void update(String s) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         Customer customer = objectMapper.readValue(s, Customer.class);
         customerDAO.update(customer);
-
-
     }
 
     @DELETE
     @Path("{id}")
     public void delete(@PathParam("id") int id) {
         Customer customer = customerDAO.findEntityById(id);
-        if(null != customer) {
+        if(customer != null) {
             customerDAO.delete(customer);
+        }
+        else {
+            System.out.println("There is no customer with such id. Please try to input another id.");
         }
     }
 

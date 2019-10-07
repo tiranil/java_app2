@@ -93,12 +93,12 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
 
         Long nextId = getNextId();
         try (Connection connection = DatabaseCon.getConn();
-        PreparedStatement statement2 =
+        PreparedStatement statement =
                      connection.prepareStatement(SQL_CREATE_USER)) {
-            statement2.setLong(1, nextId );
-            statement2.setString(2, entity.getFirstName());
-            statement2.setString(3, entity.getLastName());
-            ResultSet rs2 = statement2.executeQuery();
+            statement.setLong(1, nextId );
+            statement.setString(2, entity.getFirstName());
+            statement.setString(3, entity.getLastName());
+            ResultSet rs = statement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,7 +110,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
 
 
 
-        @Override
+    @Override
     public Customer update(Customer entity) {
         Customer customer = entity;
         try (Connection connection = DatabaseCon.getConn();
@@ -119,11 +119,17 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
             statement.setString(1, entity.getFirstName());
             statement.setString(2, entity.getLastName());
             statement.setLong(3, entity.getId());
-            ResultSet rs = statement.executeQuery();
+            int rs = statement.executeUpdate();
+            if (rs != 0) {
+                System.out.println("User updated.");
+            }
+            else {
+                System.out.println("There is no user with such id. Please input another id.");
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("User updated");
+
         return customer;
     }
     }
