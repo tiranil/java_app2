@@ -1,13 +1,11 @@
 package ru.dbolonkin.vaadin;
 
 import org.junit.*;
-import ru.dbolonkin.vaadin.database.CustomerDAO;
 import ru.dbolonkin.vaadin.database.DatabaseCon;
 import ru.dbolonkin.vaadin.entity.Customer;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -92,7 +90,7 @@ public class CustomerTest {
     @Test
     public void createUser() throws SQLException, IOException, ClassNotFoundException {
         Customer actual = new Customer(4L, "Oleg", "Zhukov");
-        testDAO.create(new Customer(4L,"Oleg","Zhukov"));
+        testDAO.create(new Customer(4L, "Oleg", "Zhukov"));
         Customer expected = testDAO.findEntityById(4);
         Assert.assertEquals(actual.getFirstName(), expected.getFirstName());
     }

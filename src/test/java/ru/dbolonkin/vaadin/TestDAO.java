@@ -3,6 +3,7 @@ package ru.dbolonkin.vaadin;
 import ru.dbolonkin.vaadin.database.AbstractDAO;
 import ru.dbolonkin.vaadin.database.DatabaseCon;
 import ru.dbolonkin.vaadin.entity.Customer;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
