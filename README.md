@@ -7,6 +7,8 @@ Template for a simple Vaadin application that only requires a Servlet 3.0 contai
 Workflow
 ========
 
+In the customers_table.sql file there are queries to prepare a necessary sql table for the app to work with.
+
 To compile the entire project, run "mvn install".
 
 To run the application, run "mvn tomcat7:run" and open http://localhost:8888/ .
