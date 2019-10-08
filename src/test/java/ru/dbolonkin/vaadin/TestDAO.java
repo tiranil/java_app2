@@ -1,18 +1,19 @@
-package ru.dbolonkin.vaadin.database;
+package ru.dbolonkin.vaadin;
 
+import ru.dbolonkin.vaadin.database.AbstractDAO;
+import ru.dbolonkin.vaadin.database.DatabaseCon;
 import ru.dbolonkin.vaadin.entity.Customer;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAO extends AbstractDAO<Integer, Customer> {
-    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM customers";
-    public static final String SQL_SELECT_USER_ID = "SELECT * FROM customers WHERE id=?";
-    public static final String SQL_DELETE_USER = "DELETE FROM customers WHERE id=?";
-    public static final String SQL_UPDATE_USER = "UPDATE customers SET first_name = ?, last_name = ? WHERE id=?";
-    public static final String SQL_CREATE_USER = "INSERT INTO customers VALUES (DEFAULT,?,?)";
+public class TestDAO extends AbstractDAO<Integer, Customer> {
+    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM test_customers";
+    public static final String SQL_SELECT_USER_ID = "SELECT * FROM test_customers WHERE id=?";
+    public static final String SQL_DELETE_USER = "DELETE FROM test_customers WHERE id=?";
+    public static final String SQL_UPDATE_USER = "UPDATE test_customers SET first_name = ?, last_name = ? WHERE id=?";
+    public static final String SQL_CREATE_USER = "INSERT INTO test_customers VALUES (DEFAULT,?,?)";
 
 
     @Override
@@ -60,6 +61,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
         return true;
     }
 
+
     @Override
     public boolean create(Customer entity) throws SQLException, IOException, ClassNotFoundException {
         Connection connection = DatabaseCon.getConn();
@@ -90,4 +92,3 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     }
 
 }
-
