@@ -10,21 +10,17 @@ import java.util.Properties;
 
 public class DatabaseCon {
 
-
-
-
     public DatabaseCon() throws FileNotFoundException {
     }
 
-
     public static Connection getConn() throws IOException, ClassNotFoundException, SQLException {
-        FileInputStream fis=new FileInputStream("connection.prop");
-        Properties p=new Properties ();
-        p.load (fis);
-        String driver= (String) p.get ("driver");
-        String url= (String) p.get ("URL");
-        String username= (String) p.get ("user");
-        String password= (String) p.get ("password");
+        FileInputStream fis = new FileInputStream("connection.prop");
+        Properties p = new Properties();
+        p.load(fis);
+        String driver = (String) p.get("driver");
+        String url = (String) p.get("URL");
+        String username = (String) p.get("user");
+        String password = (String) p.get("password");
         Connection connection = null;
         System.out.println("Testing connection to PostgreSQL JDBC");
 
@@ -32,7 +28,7 @@ public class DatabaseCon {
 
         System.out.println("PostgreSQL JDBC Driver successfully connected");
 
-        connection = DriverManager.getConnection(url,username,password);
+        connection = DriverManager.getConnection(url, username, password);
 
         if (connection != null) {
             System.out.println("You successfully connected to database now");
@@ -42,9 +38,7 @@ public class DatabaseCon {
         return connection;
     }
 
-    public static void main(String[] argv)  {
-
-
+    public static void main(String[] argv) {
 
     }
 }

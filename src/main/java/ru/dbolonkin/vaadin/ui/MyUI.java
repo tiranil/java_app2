@@ -1,6 +1,7 @@
 package ru.dbolonkin.vaadin.ui;
 
 import javax.servlet.annotation.WebServlet;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
@@ -8,6 +9,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
 import ru.dbolonkin.vaadin.database.CustomerDAO;
 import ru.dbolonkin.vaadin.entity.Customer;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -24,6 +26,7 @@ public class MyUI extends UI {
         List<Customer> customers = customerDAO.findAll();
         grid.setItems(customers);
     }
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         final VerticalLayout layout = new VerticalLayout();

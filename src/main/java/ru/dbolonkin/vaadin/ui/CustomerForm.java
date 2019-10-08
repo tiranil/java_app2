@@ -10,7 +10,7 @@ import ru.dbolonkin.vaadin.entity.Customer;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class CustomerForm extends com.vaadin.ui.FormLayout{
+public class CustomerForm extends com.vaadin.ui.FormLayout {
     private TextField firstName = new TextField("First name");
     private TextField lastName = new TextField("Last name");
     private Button save = new Button("Save");
@@ -75,8 +75,7 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
         final boolean persisted = customer.getId() != null;
         if (persisted) {
             customerDAO.update(customer);
-        }
-        else {
+        } else {
             customerDAO.create(customer);
         }
         myUI.updateList();

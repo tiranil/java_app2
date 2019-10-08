@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import ru.dbolonkin.vaadin.database.CustomerDAO;
 import ru.dbolonkin.vaadin.entity.Customer;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,7 +26,7 @@ public class CustomerService {
         for (Customer customer : customers) {
             list += objectMapper.writeValueAsString(customer);
         }
-        return  list;
+        return list;
     }
 
     @GET
@@ -38,14 +39,11 @@ public class CustomerService {
         Customer customer = customerDAO.findEntityById(id);
         if (customer != null) {
             list = list.concat(objectMapper.writeValueAsString(customer));
-        }
-        else {
+        } else {
             list = list.concat("There is no customer with such id. Please try to input another id.");
         }
         return list;
-        }
-
-
+    }
 
 
     @POST
@@ -55,7 +53,6 @@ public class CustomerService {
         Customer customer = objectMapper.readValue(s, Customer.class);
         customerDAO.create(customer);
     }
-
 
 
     @PUT
@@ -70,10 +67,9 @@ public class CustomerService {
     @Path("{id}")
     public void delete(@PathParam("id") int id) throws IOException, SQLException, ClassNotFoundException {
         Customer customer = customerDAO.findEntityById(id);
-        if(customer != null) {
+        if (customer != null) {
             customerDAO.delete(customer);
-        }
-        else {
+        } else {
             System.out.println("There is no customer with such id. Please try to input another id.");
         }
     }

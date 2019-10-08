@@ -16,8 +16,6 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     public static final String SQL_GET_ID = "SELECT MAX(id) FROM customers;";
 
 
-
-
     @Override
     public List<Customer> findAll() throws IOException, SQLException, ClassNotFoundException {
         List<Customer> customers = new ArrayList<>();
@@ -28,14 +26,14 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
             long id = rs.getInt(1);
             String firstName = rs.getString(2);
             String lastName = rs.getString(3);
-            customers.add(new Customer(id, firstName,lastName));
+            customers.add(new Customer(id, firstName, lastName));
         }
         return customers;
     }
 
     @Override
     public Customer findEntityById(Integer id) throws SQLException, IOException, ClassNotFoundException {
-       Customer customer = null;
+        Customer customer = null;
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_SELECT_USER_ID);
         statement.setLong(1, id);
@@ -61,7 +59,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
         boolean ex = statement.execute();
         System.out.println("User deleted");
         return true;
-        }
+    }
 
     public long getNextId() throws SQLException, IOException, ClassNotFoundException {
         Long nextId = null;
@@ -70,7 +68,7 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
         ResultSet rs = statement.executeQuery();
         if (rs.next()) {
             nextId = rs.getLong(1);
-            return nextId+1;
+            return nextId + 1;
         }
         return nextId;
     }
@@ -85,7 +83,6 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
         System.out.println("User created");
         return true;
     }
-
 
 
     @Override
