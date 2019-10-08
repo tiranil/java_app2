@@ -28,20 +28,26 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         addComponents(firstName, lastName, buttons);
         save.addClickListener(e -> {
+
             try {
                 this.save();
-            } catch (IOException | ClassNotFoundException ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {
                 ex.printStackTrace();
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
             }
+
         });
         delete.addClickListener(e -> {
             try {
                 this.delete();
-            } catch (IOException | ClassNotFoundException ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             } catch (SQLException ex) {
+                ex.printStackTrace();
+            } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
             }
         });
@@ -49,13 +55,10 @@ public class CustomerForm extends com.vaadin.ui.FormLayout{
 
     public void setCustomer(Customer customer) {
 
-
-            this.customer = customer;        final boolean persisted = customer.getId() != null;
-
+        this.customer = customer;
+        final boolean persisted = customer.getId() != null;
         binder.setBean(customer);
 
-
-        // Show delete button for only customers already in the database
         delete.setVisible(persisted);
         setVisible(true);
         firstName.selectAll();

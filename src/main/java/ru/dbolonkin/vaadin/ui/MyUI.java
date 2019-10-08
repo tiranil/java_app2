@@ -12,13 +12,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * This UI is the application entry point. A UI may either represent a browser window 
- * (or tab) or some part of an HTML page where a Vaadin application is embedded.
- * <p>
- * The UI is initialized using {@link #init(VaadinRequest)}. This method is intended to be 
- * overridden to add component to the user interface and initialize non-component functionality.
- */
 
 @Theme("mytheme")
 public class MyUI extends UI {
@@ -50,12 +43,13 @@ public class MyUI extends UI {
         HorizontalLayout toolbar = new HorizontalLayout(addCustomerBtn);
 
         layout.addComponents(toolbar, main);
-
         try {
             updateList();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        } catch (SQLException  e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
