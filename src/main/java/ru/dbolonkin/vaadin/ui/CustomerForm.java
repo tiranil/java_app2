@@ -7,6 +7,7 @@ import com.vaadin.ui.TextField;
 import ru.dbolonkin.vaadin.database.CustomerDAO;
 import ru.dbolonkin.vaadin.entity.Customer;
 
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -21,7 +22,7 @@ public class CustomerForm extends com.vaadin.ui.FormLayout {
     private Customer customer;
     private MyUI myUI;
 
-    public CustomerForm(MyUI myUI) {
+    public CustomerForm(MyUI myUI) throws PropertyVetoException, IOException, SQLException {
         this.myUI = myUI;
         binder.bindInstanceFields(this);
         setSizeUndefined();
@@ -37,6 +38,8 @@ public class CustomerForm extends com.vaadin.ui.FormLayout {
                 ex.printStackTrace();
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
+            } catch (PropertyVetoException ex) {
+                ex.printStackTrace();
             }
 
         });
@@ -48,6 +51,8 @@ public class CustomerForm extends com.vaadin.ui.FormLayout {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (PropertyVetoException ex) {
                 ex.printStackTrace();
             }
         });
@@ -64,13 +69,13 @@ public class CustomerForm extends com.vaadin.ui.FormLayout {
         firstName.selectAll();
     }
 
-    private void delete() throws IOException, SQLException, ClassNotFoundException {
+    private void delete() throws IOException, SQLException, ClassNotFoundException, PropertyVetoException {
         customerDAO.delete("customers", customer);
         myUI.updateList();
         setVisible(false);
     }
 
-    private void save() throws IOException, SQLException, ClassNotFoundException {
+    private void save() throws IOException, SQLException, ClassNotFoundException, PropertyVetoException {
 
         final boolean persisted = customer.getId() != null;
         if (persisted) {

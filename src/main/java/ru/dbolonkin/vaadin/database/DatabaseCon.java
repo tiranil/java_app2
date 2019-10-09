@@ -1,40 +1,52 @@
 package ru.dbolonkin.vaadin.database;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import java.beans.PropertyVetoException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseCon {
 
-    public DatabaseCon() throws FileNotFoundException {
+    private static ComboPooledDataSource cpds;
+
+    static {
+        try {
+            cpds = getDataSource();
+        } catch (PropertyVetoException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static Connection getConn() throws IOException, ClassNotFoundException, SQLException {
+    public static ComboPooledDataSource getDataSource() throws PropertyVetoException, IOException {
         FileInputStream fis = new FileInputStream("connection.prop");
         Properties p = new Properties();
         p.load(fis);
-        String driver = (String) p.get("driver");
-        String url = (String) p.get("URL");
-        String username = (String) p.get("user");
-        String password = (String) p.get("password");
-        Connection connection = null;
-        System.out.println("Testing connection to PostgreSQL JDBC");
+        ComboPooledDataSource cpds = new ComboPooledDataSource();
+        cpds.setJdbcUrl((String) p.get("URL"));
+        cpds.setUser((String) p.get("user"));
+        cpds.setPassword((String) p.get("password"));
+        cpds.setDriverClass((String) p.get("driver"));
 
-        Class.forName(driver);
+        // Optional Settings
+        cpds.setInitialPoolSize(5);
+        cpds.setMinPoolSize(5);
+        cpds.setAcquireIncrement(5);
+        cpds.setMaxPoolSize(20);
+        cpds.setMaxStatements(100);
 
-        System.out.println("PostgreSQL JDBC Driver successfully connected");
+        return cpds;
+    }
 
-        connection = DriverManager.getConnection(url, username, password);
-
-        if (connection != null) {
-            System.out.println("You successfully connected to database now");
-        } else {
-            System.out.println("Failed to make connection to database");
-        }
+    public static Connection getConn() throws IOException, SQLException, PropertyVetoException {
+        Connection connection;
+        connection = cpds.getConnection();
         return connection;
     }
 

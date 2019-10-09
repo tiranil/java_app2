@@ -10,6 +10,7 @@ import com.vaadin.ui.*;
 import ru.dbolonkin.vaadin.database.CustomerDAO;
 import ru.dbolonkin.vaadin.entity.Customer;
 
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -21,8 +22,11 @@ public class MyUI extends UI {
     private Grid<Customer> grid = new Grid<>(Customer.class);
     private CustomerForm form = new CustomerForm(this);
 
+    public MyUI() throws PropertyVetoException, IOException, SQLException {
+    }
 
-    public void updateList() throws IOException, SQLException, ClassNotFoundException {
+
+    public void updateList() throws IOException, SQLException, ClassNotFoundException, PropertyVetoException {
         List<Customer> customers = customerDAO.findAll("customers");
         grid.setItems(customers);
     }
@@ -53,6 +57,8 @@ public class MyUI extends UI {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
 
