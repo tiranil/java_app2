@@ -1,6 +1,7 @@
 package ru.dbolonkin.vaadin;
 
 import org.junit.*;
+import ru.dbolonkin.vaadin.database.CustomerDAO;
 import ru.dbolonkin.vaadin.database.DatabaseCon;
 import ru.dbolonkin.vaadin.entity.Customer;
 
@@ -15,7 +16,7 @@ public class CustomerTest {
     private Customer customer;
     private Customer customer1;
     private Customer customer2;
-    private TestDAO testDAO = new TestDAO();
+    private CustomerDAO customerDAO = new CustomerDAO();
 
     @BeforeClass
     public static void createTable() throws SQLException, IOException, ClassNotFoundException {
@@ -49,7 +50,7 @@ public class CustomerTest {
         actual.add(customer1);
         actual.add(customer2);
 
-        List<Customer> expected = testDAO.findAll();
+        List<Customer> expected = customerDAO.findAll("test_customers");
 
         for (Customer customer : actual) {
             Assert.assertEquals(expected.iterator().next().getId(), expected.iterator().next().getId());
@@ -62,7 +63,7 @@ public class CustomerTest {
     public void getUserById() throws SQLException, IOException, ClassNotFoundException {
 
         Customer actual = customer1;
-        Customer expected = testDAO.findEntityById(2);
+        Customer expected = customerDAO.findEntityById("test_customers", 2);
 
         Assert.assertEquals(actual.getId(), expected.getId());
         Assert.assertEquals(actual.getFirstName(), expected.getFirstName());
@@ -71,27 +72,27 @@ public class CustomerTest {
 
     @Test
     public void deleteUserById() throws SQLException, IOException, ClassNotFoundException {
-        Customer actual = testDAO.findEntityById(2);
-        testDAO.delete(actual);
-        Assert.assertNull(testDAO.findEntityById(2));
+        Customer actual = customerDAO.findEntityById("test_customers", 2);
+        customerDAO.delete("test_customers", actual);
+        Assert.assertNull(customerDAO.findEntityById("test_customers", 2));
     }
 
     @Test
     public void updateUser() throws SQLException, IOException, ClassNotFoundException {
         Customer actual = customer;
         actual.setFirstName("Dmitrii");
-        Customer expected = testDAO.findEntityById(1);
+        Customer expected = customerDAO.findEntityById("test_customers", 1);
         expected.setFirstName("Dmitrii");
-        testDAO.update(expected);
-        Customer expected2 = testDAO.findEntityById(1);
+        customerDAO.update("test_customers", expected);
+        Customer expected2 = customerDAO.findEntityById("test_customers", 1);
         Assert.assertEquals(actual.getFirstName(), expected2.getFirstName());
     }
 
     @Test
     public void createUser() throws SQLException, IOException, ClassNotFoundException {
         Customer actual = new Customer(4L, "Oleg", "Zhukov");
-        testDAO.create(new Customer(4L, "Oleg", "Zhukov"));
-        Customer expected = testDAO.findEntityById(4);
+        customerDAO.create("test_customers", new Customer(4L, "Oleg", "Zhukov"));
+        Customer expected = customerDAO.findEntityById("test_customers", 4);
         Assert.assertEquals(actual.getFirstName(), expected.getFirstName());
     }
 }

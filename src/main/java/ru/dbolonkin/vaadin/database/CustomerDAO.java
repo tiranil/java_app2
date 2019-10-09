@@ -8,15 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO extends AbstractDAO<Integer, Customer> {
-    public static final String SQL_SELECT_ALL_USERS = "SELECT * FROM customers";
-    public static final String SQL_SELECT_USER_ID = "SELECT * FROM customers WHERE id=?";
-    public static final String SQL_DELETE_USER = "DELETE FROM customers WHERE id=?";
-    public static final String SQL_UPDATE_USER = "UPDATE customers SET first_name = ?, last_name = ? WHERE id=?";
-    public static final String SQL_CREATE_USER = "INSERT INTO customers VALUES (DEFAULT,?,?)";
+
+
 
 
     @Override
-    public List<Customer> findAll() throws IOException, SQLException, ClassNotFoundException {
+    public List<Customer> findAll(String table) throws IOException, SQLException, ClassNotFoundException {
+        String SQL_SELECT_ALL_USERS = String.format("SELECT * FROM %s",table);
         List<Customer> customers = new ArrayList<>();
         Connection connection = DatabaseCon.getConn();
         Statement statement = connection.createStatement();
@@ -31,7 +29,8 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     }
 
     @Override
-    public Customer findEntityById(Integer id) throws SQLException, IOException, ClassNotFoundException {
+    public Customer findEntityById(String table, Integer id) throws SQLException, IOException, ClassNotFoundException {
+        String SQL_SELECT_USER_ID = String.format("SELECT * FROM %s WHERE id=?",table);
         Customer customer = null;
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_SELECT_USER_ID);
@@ -46,12 +45,8 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     }
 
     @Override
-    public boolean delete(Integer id) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean delete(Customer entity) throws SQLException, IOException, ClassNotFoundException {
+    public boolean delete(String table, Customer entity) throws SQLException, IOException, ClassNotFoundException {
+        String SQL_DELETE_USER = String.format("DELETE FROM %s WHERE id=?",table);
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_DELETE_USER);
         statement.setLong(1, entity.getId());
@@ -61,7 +56,8 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
     }
 
     @Override
-    public boolean create(Customer entity) throws SQLException, IOException, ClassNotFoundException {
+    public boolean create(String table, Customer entity) throws SQLException, IOException, ClassNotFoundException {
+        String SQL_CREATE_USER = String.format("INSERT INTO %s VALUES (DEFAULT,?,?)",table);
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_CREATE_USER);
         statement.setString(1, entity.getFirstName());
@@ -73,7 +69,8 @@ public class CustomerDAO extends AbstractDAO<Integer, Customer> {
 
 
     @Override
-    public Customer update(Customer entity) throws IOException, SQLException, ClassNotFoundException {
+    public Customer update(String table, Customer entity) throws IOException, SQLException, ClassNotFoundException {
+        String SQL_UPDATE_USER = String.format("UPDATE %s SET first_name = ?, last_name = ? WHERE id=?",table);
         Customer customer = entity;
         Connection connection = DatabaseCon.getConn();
         PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER);

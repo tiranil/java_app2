@@ -21,7 +21,7 @@ public class CustomerService {
     public String getAll() throws IOException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-        List<Customer> customers = customerDAO.findAll();
+        List<Customer> customers = customerDAO.findAll("customers");
         String list = new String();
         for (Customer customer : customers) {
             list += objectMapper.writeValueAsString(customer);
@@ -36,7 +36,7 @@ public class CustomerService {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         String list = new String();
-        Customer customer = customerDAO.findEntityById(id);
+        Customer customer = customerDAO.findEntityById("customers", id);
         if (customer != null) {
             list = list.concat(objectMapper.writeValueAsString(customer));
         } else {
@@ -51,7 +51,7 @@ public class CustomerService {
     public void create(String s) throws IOException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         Customer customer = objectMapper.readValue(s, Customer.class);
-        customerDAO.create(customer);
+        customerDAO.create("customers", customer);
     }
 
 
@@ -60,15 +60,15 @@ public class CustomerService {
     public void update(String s) throws IOException, SQLException, ClassNotFoundException {
         ObjectMapper objectMapper = new ObjectMapper();
         Customer customer = objectMapper.readValue(s, Customer.class);
-        customerDAO.update(customer);
+        customerDAO.update("customers", customer);
     }
 
     @DELETE
     @Path("{id}")
     public void delete(@PathParam("id") int id) throws IOException, SQLException, ClassNotFoundException {
-        Customer customer = customerDAO.findEntityById(id);
+        Customer customer = customerDAO.findEntityById("customers", id);
         if (customer != null) {
-            customerDAO.delete(customer);
+            customerDAO.delete("customers", customer);
         } else {
             System.out.println("There is no customer with such id. Please try to input another id.");
         }

@@ -23,7 +23,7 @@ public class MyUI extends UI {
 
 
     public void updateList() throws IOException, SQLException, ClassNotFoundException {
-        List<Customer> customers = customerDAO.findAll();
+        List<Customer> customers = customerDAO.findAll("customers");
         grid.setItems(customers);
     }
 

@@ -65,7 +65,7 @@ public class CustomerForm extends com.vaadin.ui.FormLayout {
     }
 
     private void delete() throws IOException, SQLException, ClassNotFoundException {
-        customerDAO.delete(customer);
+        customerDAO.delete("customers", customer);
         myUI.updateList();
         setVisible(false);
     }
@@ -74,9 +74,9 @@ public class CustomerForm extends com.vaadin.ui.FormLayout {
 
         final boolean persisted = customer.getId() != null;
         if (persisted) {
-            customerDAO.update(customer);
+            customerDAO.update("customers", customer);
         } else {
-            customerDAO.create(customer);
+            customerDAO.create("customers", customer);
         }
         myUI.updateList();
         setVisible(false);
